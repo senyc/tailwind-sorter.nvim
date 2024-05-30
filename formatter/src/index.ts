@@ -25,7 +25,6 @@ function sortClasses(classStr: string): string {
   let result = "";
   const parts = classStr.split(/(\s+)/);
   let classes = parts.filter((_, i) => i % 2 === 0);
-  const whitespace = parts.filter((_, i) => i % 2 !== 0);
 
   if (classes[classes.length - 1] === "") {
     classes.pop();
@@ -34,10 +33,10 @@ function sortClasses(classStr: string): string {
   classes = sortClassList(classes);
 
   for (let i = 0; i < classes.length; i++) {
-    result += `${classes[i]}${whitespace[i] ?? ""}`;
+    result += `${classes[i]} `;
   }
 
-  return result;
+  return result.trimEnd().trimStart();
 }
 
 function bigSign(bigIntValue: bigint): number {
